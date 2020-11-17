@@ -18,4 +18,7 @@ I have good news for hackers and pen testers. I made it easier by my new python 
 >   Options: -p, --proxy              <Use Proxy>
 >  
 >   Example: python burp-to-sqlmap.py -f [BURP-STATE-FILE] -o [OUTPUT-DIRECTORY] -s [SQLMap-Path] -p [Proxy]
-  
+
+
+# Create Request/Response File
+![Create Request/Response File](https://github.com/Miladkhoshdel/burp-to-sqlmap/1.png?raw=true)
