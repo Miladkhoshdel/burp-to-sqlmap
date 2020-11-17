@@ -19,16 +19,26 @@ I have good news for hackers and pen testers. I made it easier by my new python 
 >  
 >   Example: python burp-to-sqlmap.py -f [BURP-STATE-FILE] -o [OUTPUT-DIRECTORY] -s [SQLMap-Path] -p [Proxy]
 
+- Vulnerable Packet Result
+
+![Create Request/Response File](https://raw.githubusercontent.com/Miladkhoshdel/burp-to-sqlmap/master/4.PNG)
+
+
 
 # Create Request/Response File
 
-1)Select Your Request
+1) Select Your Request
+
 ![Create Request/Response File](https://raw.githubusercontent.com/Miladkhoshdel/burp-to-sqlmap/master/1.PNG)
 
-2)Right Clicke one one of these selected requests
+
+2) Right Clicke one one of these selected requests
+
 ![Create Request/Response File](https://raw.githubusercontent.com/Miladkhoshdel/burp-to-sqlmap/master/2.PNG)
 
+
 3) Uncheck Base64 Option and create your requests/responses file
+
 ![Create Request/Response File](https://raw.githubusercontent.com/Miladkhoshdel/burp-to-sqlmap/master/3.PNG)
 
 
