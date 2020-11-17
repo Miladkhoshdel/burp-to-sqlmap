@@ -21,4 +21,4 @@ I have good news for hackers and pen testers. I made it easier by my new python 
 
 
 # Create Request/Response File
-![Create Request/Response File](https://github.com/Miladkhoshdel/burp-to-sqlmap/master/1.PNG?raw=true)
+![Create Request/Response File](https://raw.githubusercontent.com/Miladkhoshdel/burp-to-sqlmap/master/1.PNG)
