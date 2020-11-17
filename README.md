@@ -25,7 +25,7 @@ I have good news for hackers and pen testers. I made it easier by my new python 
 
 
 
-# How to Create Request/Response File
+# How to Create Request/Response File in BurpSuite
 
 1) Select Your Request
 
