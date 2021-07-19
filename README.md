@@ -13,15 +13,17 @@ I have good news for hackers and pen testers. I made it easier by my new python 
 >  
 >  Options: -o, --outputdirectory    <Output Directory>
 >  
->  Options: -s, --sqlmappath         <SQLMap Path>
+>  Options: -s, --sqlmappath         <SqlMap Path>
 >  
->   Options: -p, --proxy              <Use Proxy>
+>  Options: -p, --proxy              <Use Proxy>
 >  
->   Options: -r, --risk               <Use Proxy>
+>  Options: -r, --risk               <SqlMap Risk>
 >  
->   Options: -l, --level              <Use Proxy>
+>  Options: -l, --level              <SqlMap Level>
 >  
->   Example: python burp-to-sqlmap.py -f [BURP-STATE-FILE] -o [OUTPUT-DIRECTORY] -s [SQLMap-Path] -p [Proxy] -r 3 -l 5
+>  Options: -t, --tamper             <SqlMap Tamper List>
+>  
+>   Example: python burp-to-sqlmap.py -f [BURP-STATE-FILE] -o [OUTPUT-DIRECTORY] -s [SQLMap-Path]
 
 - Vulnerable Packet Result
 
