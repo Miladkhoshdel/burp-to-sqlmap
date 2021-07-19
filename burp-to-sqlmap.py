@@ -40,7 +40,9 @@ def usage():
     print("  Options: -o, --outputdirectory    <Output Directory>")
     print("  Options: -s, --sqlmappath         <SQLMap Path>")
     print("  Options: -p, --proxy              <Use Proxy>")
-    print("  Example: python burp-to-sqlmap.py -f [BURP-STATE-FILE] -o [OUTPUT-DIRECTORY] -s [SQLMap-Path] -p [Proxy]")
+    print("  Options: -r, --risk               <SqlMap Risk>")
+    print("  Options: -l, --level              <SqlMap Level>")
+    print("  Example: python burp-to-sqlmap.py -f [BURP-STATE-FILE] -o [OUTPUT-DIRECTORY] -s [SQLMap-Path] -p [Proxy] -r 3 -l 5")
     print(" ")
 
 def main():
@@ -49,6 +51,8 @@ def main():
     parser.add_argument("-o", "--outputdirectory")
     parser.add_argument("-s", "--sqlmappath")
     parser.add_argument("-p", "--proxy")
+    parser.add_argument("-r", "--risk")
+    parser.add_argument("-l", "--level")
     args = parser.parse_args()
 
     if not args.file or not args.outputdirectory or not args.sqlmappath:
@@ -57,9 +61,19 @@ def main():
         sys.exit(0)
 
     if args.proxy:
-        proxyvalue = "--proxy " + args.proxy
+        proxyvalue = "--proxy " + args.proxy + " "
     else:
         proxyvalue = ""
+
+    if args.risk:
+        risk_value = "--risk " + args.risk + " "
+    else:
+        risk_value = ""
+
+    if args.level:
+        level_value = "--level " + args.level + " "
+    else:
+        level_value = ""
 
 
     vulnerablefiles = []
@@ -71,13 +85,13 @@ def main():
         os.makedirs(directory)
 
     if sys.platform.startswith("win32"):
-        runWindows(filename, directory, sqlmappath, proxyvalue, vulnerablefiles)
+        runWindows(filename, directory, sqlmappath, proxyvalue, vulnerablefiles, risk_value, level_value)
     elif sys.platform.startswith("linux"):
-        runLinux(filename, directory, sqlmappath, proxyvalue, vulnerablefiles)
+        runLinux(filename, directory, sqlmappath, proxyvalue, vulnerablefiles, risk_value, level_value)
     else:
         print("[+] Error: Unsupported OS Detected!")
 
-def runWindows(filename, directory, sqlmappath, proxyvalue, vulnerablefiles):
+def runWindows(filename, directory, sqlmappath, proxyvalue, vulnerablefiles, risk_value, level_value):
     packetnumber = 0
     print(" [+] Exporting Packets ...")
     with open(filename, 'r') as f:
@@ -95,7 +109,7 @@ def runWindows(filename, directory, sqlmappath, proxyvalue, vulnerablefiles):
     for file in os.listdir(directory):
         print("   [-] Performing SQL Injection on packet number " + file[:-4] + ". Please Wait ...")
         os.system("python " + sqlmappath + "\sqlmap.py -r " + os.path.dirname(os.path.realpath(
-            __file__)) + "\\" + directory + "\\" + file + " --batch " + proxyvalue + " > " + os.path.dirname(
+            __file__)) + "\\" + directory + "\\" + file + " --batch " + proxyvalue + risk_value + level_value + " > " + os.path.dirname(
             os.path.realpath(__file__)) + "\\" + directory + "\\testresult" + file)
         if 'is vulnerable' in open(directory + "\\testresult" + file).read() or "Payload:" in open(
                 directory + "\\testresult" + file).read():
@@ -116,7 +130,7 @@ def runWindows(filename, directory, sqlmappath, proxyvalue, vulnerablefiles):
     print("--------------")
     print(" ")
 
-def runLinux(filename, directory, sqlmappath, proxyvalue, vulnerablefiles):
+def runLinux(filename, directory, sqlmappath, proxyvalue, vulnerablefiles, risk_value, level_value):
     packetnumber = 0
     print(" [+] Exporting Packets ...")
     
@@ -144,7 +158,7 @@ def runLinux(filename, directory, sqlmappath, proxyvalue, vulnerablefiles):
         cmd = "rm %s_ascii" % (os.path.dirname(os.path.realpath(__file__)) + "/" + directory + "/" + file)
         os.system(cmd)
         print("   [-] Performing SQL Injection on packet number " + file[:-4] + ". Please Wait ...")
-        cmd = "python " + sqlmappath + "/sqlmap.py -r " + os.path.dirname(os.path.realpath(__file__)) + "/" + directory + "/" + file + " --batch " + proxyvalue + " > " + os.path.dirname(os.path.realpath(__file__)) + "/" + directory + "/testresult" + "_" + file
+        cmd = "python " + sqlmappath + "/sqlmap.py -r " + os.path.dirname(os.path.realpath(__file__)) + "/" + directory + "/" + file + " --batch " + proxyvalue + risk_value + level_value + " > " + os.path.dirname(os.path.realpath(__file__)) + "/" + directory + "/testresult" + "_" + file
         os.system(cmd)
         if 'is vulnerable' in open(directory + "/testresult" + "_" + file).read() or "Payload:" in open(
                 directory + "/testresult" + "_" + file).read():
