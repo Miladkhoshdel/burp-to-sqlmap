@@ -17,7 +17,11 @@ I have good news for hackers and pen testers. I made it easier by my new python 
 >  
 >   Options: -p, --proxy              <Use Proxy>
 >  
->   Example: python burp-to-sqlmap.py -f [BURP-STATE-FILE] -o [OUTPUT-DIRECTORY] -s [SQLMap-Path] -p [Proxy]
+>   Options: -r, --risk               <Use Proxy>
+>  
+>   Options: -l, --level              <Use Proxy>
+>  
+>   Example: python burp-to-sqlmap.py -f [BURP-STATE-FILE] -o [OUTPUT-DIRECTORY] -s [SQLMap-Path] -p [Proxy] -r 3 -l 5
 
 - Vulnerable Packet Result
 
