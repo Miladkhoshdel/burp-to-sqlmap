@@ -77,7 +77,7 @@ def main():
     else:
         level_value = ""
 
-    if args.level:
+    if args.tamper:
         tamper_value = "--tamper=" + args.tamper + " "
     else:
         tamper_value = ""
